@@ -1,13 +1,18 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
+import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+import CustormSwitch from "../elements/CustormSwitch";
 
 const Nav = () => {
+  const [toggle, setToggle] = useState<boolean>(false);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,13 +30,26 @@ const Nav = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
               width: "100%",
             }}
           >
             <Typography variant="h6" component="div">
               News
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Box>
+              <CustormSwitch />
+              <IconButton
+                onClick={() => setToggle(!toggle)}
+                aria-label="toggle"
+              >
+                {toggle ? (
+                  <ViewListRoundedIcon sx={{ color: "white" }} />
+                ) : (
+                  <GridViewRoundedIcon sx={{ color: "white" }} />
+                )}
+              </IconButton>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
